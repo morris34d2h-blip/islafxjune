@@ -586,6 +586,66 @@
   }
   .trust-badge span { color: var(--gold); }
 
+  /* ── INVESTMENTS ── */
+  #investments { background: var(--surface); }
+  .invest-hero {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 80px;
+  }
+  .invest-tiers {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 60px;
+  }
+  .invest-card {
+    background: var(--surface2); border: 0.5px solid var(--border);
+    border-radius: var(--r-lg); padding: 36px 32px;
+    position: relative; transition: all 0.3s; cursor: default;
+  }
+  .invest-card:hover { border-color: var(--border-bright); transform: translateY(-3px); }
+  .invest-card.featured-invest {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--surface2) 100%);
+    border-color: var(--gold-dim); border-width: 1px;
+    grid-column: span 2;
+  }
+  .invest-icon {
+    width: 48px; height: 48px; border-radius: var(--r);
+    background: rgba(201,168,76,0.1); border: 0.5px solid var(--border-bright);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px;
+  }
+  .invest-tier-name { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .invest-min { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+  .invest-min-label { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
+  .invest-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .invest-features li { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .invest-features li::before { content: '✦'; color: var(--gold); font-size: 9px; flex-shrink: 0; }
+  .invest-btn {
+    padding: 12px 28px; border-radius: var(--r);
+    border: 1px solid var(--border-bright); background: transparent; color: var(--gold);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.25s; display: inline-block; text-decoration: none;
+  }
+  .invest-btn:hover, .invest-card.featured-invest .invest-btn { background: var(--gold); color: var(--black); border-color: var(--gold); }
+  .invest-disclaimer {
+    margin-top: 40px; padding: 24px 28px;
+    background: rgba(224,92,92,0.06); border: 0.5px solid rgba(224,92,92,0.2);
+    border-radius: var(--r-lg); font-size: 13px; color: var(--text-muted); line-height: 1.7;
+  }
+  .invest-disclaimer strong { color: #E05C5C; }
+  .invest-stats-row { display: flex; gap: 48px; flex-wrap: wrap; }
+  .invest-stat-item { }
+  .invest-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .invest-stat-lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  /* invest modal */
+  .invest-modal-tiers { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+  .invest-modal-tier {
+    padding: 16px 18px; border-radius: var(--r);
+    border: 0.5px solid var(--border); background: var(--surface3);
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .invest-modal-tier:hover, .invest-modal-tier.selected { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
+  .invest-modal-tier .tier-name { font-size: 14px; font-weight: 500; }
+  .invest-modal-tier .tier-min { font-size: 13px; color: var(--gold); }
+
   /* ── MOBILE ── */
   @media (max-width: 900px) {
     .nav-links, .nav-cta { display: none; }
@@ -595,6 +655,10 @@
     .courses-grid { grid-template-columns: 1fr; }
     .plans-grid { grid-template-columns: 1fr; }
     .signals-grid { grid-template-columns: 1fr; }
+    .invest-tiers { grid-template-columns: 1fr; }
+    .invest-card.featured-invest { grid-column: span 1; }
+    .invest-hero { grid-template-columns: 1fr; gap: 40px; }
+    .invest-stats-row { gap: 24px; }
     .testi-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr 1fr; }
@@ -641,6 +705,7 @@
     <li><a href="#courses">Courses</a></li>
     <li><a href="#membership">Membership</a></li>
     <li><a href="#signals">Signals</a></li>
+    <li><a href="#investments">Investments</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="https://wa.me/254702451538?text=Hi%20Isla%20FX%20Academy!%20I%20want%20to%20join%20the%20mentorship.%20Please%20guide%20me%20on%20payment." target="_blank" class="nav-cta" style="text-decoration:none">Get Started</a>
@@ -1532,6 +1597,8 @@ function switchNote(btn, id) {
         <label>Enquiry Type</label>
         <select>
           <option>General Question</option>
+          <option>Investment Account Enquiry</option>
+          <option>Mentorship Account Enquiry</option>
           <option>VIP Mentorship Application</option>
           <option>Payment & Billing</option>
           <option>Technical Support</option>
@@ -1544,6 +1611,123 @@ function switchNote(btn, id) {
       </div>
       <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send Message →</button>
     </form>
+  </div>
+</section>
+
+<!-- INVESTMENTS / MANAGED ACCOUNTS -->
+<section id="investments">
+  <div class="invest-hero">
+    <div>
+      <div class="section-label">Managed Accounts</div>
+      <h2 class="section-title">Grow Your Capital<br>With Us</h2>
+      <div class="divider"></div>
+      <p class="section-sub">For those who prefer to invest rather than trade themselves — let our experienced traders manage your capital in the live forex and commodities markets. Two tiers: a mentorship-linked account and a pure investment account.</p>
+      <div class="invest-stats-row" style="margin-top:40px">
+        <div class="invest-stat-item">
+          <div class="invest-stat-num">KES 20k</div>
+          <div class="invest-stat-lbl">Investment Min.</div>
+        </div>
+        <div class="invest-stat-item">
+          <div class="invest-stat-num">$1,000</div>
+          <div class="invest-stat-lbl">Mentorship Min.</div>
+        </div>
+        <div class="invest-stat-item">
+          <div class="invest-stat-num">Monthly</div>
+          <div class="invest-stat-lbl">Returns Paid Out</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--surface2);border:0.5px solid var(--border);border-radius:var(--r-lg);padding:36px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;right:0;width:180px;height:180px;background:radial-gradient(circle,rgba(201,168,76,0.08),transparent 70%);pointer-events:none;"></div>
+      <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);margin-bottom:20px;">How It Works</div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,0.15);border:0.5px solid var(--border-bright);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">1</div>
+          <div><div style="font-size:14px;font-weight:500;margin-bottom:4px;">Choose Your Tier</div><div style="font-size:13px;color:var(--text-muted);">Pick the investment or mentorship-account plan that fits your capital.</div></div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,0.15);border:0.5px solid var(--border-bright);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">2</div>
+          <div><div style="font-size:14px;font-weight:500;margin-bottom:4px;">Deposit & Onboard</div><div style="font-size:13px;color:var(--text-muted);">Send funds via M-Pesa or bank. Sign a simple agreement. Account goes live within 24 hrs.</div></div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,0.15);border:0.5px solid var(--border-bright);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">3</div>
+          <div><div style="font-size:14px;font-weight:500;margin-bottom:4px;">Track & Earn</div><div style="font-size:13px;color:var(--text-muted);">Receive weekly performance updates. Returns distributed at the end of each month.</div></div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,0.15);border:0.5px solid var(--border-bright);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">4</div>
+          <div><div style="font-size:14px;font-weight:500;margin-bottom:4px;">Withdraw Anytime</div><div style="font-size:13px;color:var(--text-muted);">30-day notice period. Principal and profits returned within 5 business days.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="invest-tiers">
+    <!-- Investment Account -->
+    <div class="invest-card">
+      <div class="invest-icon">📈</div>
+      <div class="invest-tier-name">Investment Account</div>
+      <div class="invest-min">KES 20,000</div>
+      <div class="invest-min-label">Minimum to open</div>
+      <ul class="invest-features">
+        <li>Capital traded in forex &amp; commodities</li>
+        <li>Weekly performance report via WhatsApp</li>
+        <li>Monthly profit distribution</li>
+        <li>Profit-sharing model — we earn when you earn</li>
+        <li>Flexible top-up anytime</li>
+        <li>30-day withdrawal notice</li>
+      </ul>
+      <a href="https://wa.me/254702451538?text=Hi!%20I%20want%20to%20open%20an%20Investment%20Account%20(min%20KES%2020%2C000).%20Please%20guide%20me." target="_blank" class="invest-btn">💬 Open Investment Account</a>
+    </div>
+
+    <!-- Mentorship + Account -->
+    <div class="invest-card">
+      <div class="invest-icon">🎓</div>
+      <div class="invest-tier-name">Mentorship Account</div>
+      <div class="invest-min">$1,000</div>
+      <div class="invest-min-label">Minimum (USD equivalent)</div>
+      <ul class="invest-features">
+        <li>All Investment Account benefits</li>
+        <li>Full VIP Mentorship access included</li>
+        <li>Learn while your capital works</li>
+        <li>1-on-1 trade review sessions</li>
+        <li>Gradual transition to self-trading</li>
+        <li>Ideal for serious long-term traders</li>
+      </ul>
+      <a href="https://wa.me/254702451538?text=Hi!%20I%20want%20to%20open%20a%20Mentorship%20Account%20(min%20%241%2C000%20USD).%20Please%20guide%20me." target="_blank" class="invest-btn">💬 Open Mentorship Account</a>
+    </div>
+
+    <!-- Performance Note - full width -->
+    <div class="invest-card featured-invest">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+        <div>
+          <div class="invest-tier-name">Realistic Returns</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:16px;line-height:1.2;">What to Expect<br><em style="color:var(--gold);">Month-to-Month</em></div>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Forex is a skilled profession — returns vary with market conditions. Based on our live trading history, here is what a KES 20,000 account may realistically look like:</p>
+          <a href="https://wa.me/254702451538?text=Hi!%20I%20want%20to%20know%20more%20about%20the%20managed%20account%20performance%20history." target="_blank" class="invest-btn">💬 Ask for Live Track Record</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="background:rgba(76,175,138,0.08);border:0.5px solid rgba(76,175,138,0.25);border-radius:var(--r);padding:16px 20px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:#4CAF8A;margin-bottom:6px;">Good Month</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#4CAF8A;">5 – 10%</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">KES 1,000 – 2,000 on a 20k account</div>
+          </div>
+          <div style="background:rgba(201,168,76,0.08);border:0.5px solid var(--border-bright);border-radius:var(--r);padding:16px 20px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;">Average Month</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--gold);">2 – 5%</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">KES 400 – 1,000 on a 20k account</div>
+          </div>
+          <div style="background:rgba(224,92,92,0.07);border:0.5px solid rgba(224,92,92,0.2);border-radius:var(--r);padding:16px 20px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:#E05C5C;margin-bottom:6px;">Bad Month</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#E05C5C;">0% or Loss</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Markets don't always cooperate — losses are real</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="invest-disclaimer">
+    <strong>⚠️ Important Risk Disclosure:</strong> Managed forex accounts carry significant risk of capital loss. Past performance does not guarantee future results. Only invest money you can afford to lose entirely. Returns shown are illustrative ranges based on trading history — they are not guaranteed. Isla FX Academy is not a licensed investment fund; participation is on a private, agreement-based basis. Always seek independent financial advice before investing.
   </div>
 </section>
 
@@ -1585,6 +1769,7 @@ function switchNote(btn, id) {
       <ul>
         <li><a href="#courses">All Courses</a></li>
         <li><a href="#signals">Live Signals</a></li>
+        <li><a href="#investments">Managed Accounts</a></li>
         <li><a href="#membership">Pricing</a></li>
         <li><a href="#dashboard">Dashboard</a></li>
         <li><a href="#">Blog</a></li>
